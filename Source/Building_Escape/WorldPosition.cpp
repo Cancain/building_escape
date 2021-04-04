@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "WorldPosition.h"
+#include "GameFramework/Actor.h"
 
 // Sets default values for this component's properties
 UWorldPosition::UWorldPosition(){
@@ -15,9 +16,8 @@ UWorldPosition::UWorldPosition(){
 // Called when the game starts
 void UWorldPosition::BeginPlay(){
 	Super::BeginPlay();
-	UE_LOG(LogTemp, Display, TEXT("Just a log, nothing to see"));
-	UE_LOG(LogTemp, Warning, TEXT("This is a warning"));
-	UE_LOG(LogTemp, Error, TEXT("ERROR"));
+	const FString ObjectName{GetOwner()->GetName()};
+	UE_LOG(LogTemp, Warning, TEXT("The owners name is: %s"), *ObjectName);
 }
 
 // Called every frame
