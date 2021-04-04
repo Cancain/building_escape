@@ -16,8 +16,11 @@ UWorldPosition::UWorldPosition(){
 // Called when the game starts
 void UWorldPosition::BeginPlay(){
 	Super::BeginPlay();
+
 	const FString ObjectName{GetOwner()->GetName()};
-	UE_LOG(LogTemp, Warning, TEXT("The owners name is: %s"), *ObjectName);
+	const FString ObjectPosition{GetOwner()->GetActorLocation().ToString()};
+
+	UE_LOG(LogTemp, Warning, TEXT("%s position in world id: %s"), *ObjectName, *ObjectPosition);
 }
 
 // Called every frame
