@@ -24,6 +24,8 @@ public:
 	                           FActorComponentTickFunction* ThisTickFunction) override;
 
 private:
-	const float TargetYaw{90.f};
+	float TargetYaw;
+	float CurrentYaw;
+	float InitalYaw;
 
 };
