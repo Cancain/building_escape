@@ -6,7 +6,7 @@
 #include "OpenDoor.generated.h"
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
-class BUILDING_ESCAPE_API UOpenDoor : public UActorComponent{
+class BUILDING_ESCAPE_API UOpenDoor : public UActorComponent {
 	GENERATED_BODY()
 
 public:
@@ -34,5 +34,10 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	AActor* ActorThatOpens;
+
+	float DoorLastOpened{0.f};
+
+	UPROPERTY(EditAnywhere)
+	float DoorCloseDelay{.5f};
 
 };
