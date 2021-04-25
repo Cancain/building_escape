@@ -1,8 +1,7 @@
 #include "OpenDoor.h"
-
-#include <Actor.h>
-
 #include "GameFramework/Actor.h"
+#include "GameFramework/PlayerController.h"
+#include "Engine/World.h"
 
 // Sets default values for this component's properties
 UOpenDoor::UOpenDoor() { PrimaryComponentTick.bCanEverTick = true; }
@@ -11,7 +10,7 @@ void UOpenDoor::BeginPlay()
 	{
 		Super::BeginPlay();
 
-		AActor* Owner{GetOwner()};
+		const AActor* Owner{GetOwner()};
 		InitalYaw = Owner->GetActorRotation().Yaw;
 		CurrentYaw = InitalYaw;
 		TargetYaw += InitalYaw;
@@ -20,6 +19,8 @@ void UOpenDoor::BeginPlay()
 			UE_LOG(LogTemp, Error, TEXT("%s has the open door component on it, but no pressureplate set!"),
 			       *Owner->GetName())
 		}
+
+		ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn();
 	}
 
 void UOpenDoor::TickComponent(const float DeltaTime, const ELevelTick TickType,
@@ -39,7 +40,6 @@ void UOpenDoor::OpenDoor(const float DeltaTime)
 		DoorRotation.Yaw = CurrentYaw;
 
 		if(FMath::RoundFromZero(CurrentYaw) < TargetYaw){
-			UE_LOG(LogTemp, Warning, TEXT("%f"), FMath::RoundFromZero(CurrentYaw));
 			GetOwner()->SetActorRotation(DoorRotation);
 		}
 	}
