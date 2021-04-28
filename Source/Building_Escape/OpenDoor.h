@@ -27,7 +27,7 @@ private:
 	void CloseDoor(const float DeltaTime);
 
 	UPROPERTY(EditAnywhere)
-	float TargetYaw{90.f};
+	float OpenAngle{90.f};
 
 	UPROPERTY(EditAnywhere)
 	ATriggerVolume* PressurePlate;
@@ -39,5 +39,11 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float DoorCloseDelay{.5f};
+
+	UPROPERTY(EditAnywhere)
+	float DoorClosingVelocity{1.f};
+
+	UPROPERTY(EditAnywhere)
+	float DoorOpeningVelocity{1.f};
 
 };
